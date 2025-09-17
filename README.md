@@ -1,6 +1,6 @@
 # Weather Dashboard Web Application
 
-![Weather App Screenshot](link_to_your_screenshot.jpg)
+![Weather App Screenshot](https://github.com/thanaponkr/Weather-Dashboard-App/blob/main/Weather_App.png)
 
 A clean and modern weather dashboard that fetches and displays real-time weather data from the OpenWeatherMap API. Users can search for any city to get the current weather conditions.
 
