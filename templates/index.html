@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #eef1f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .dashboard-container {
+            width: 800px;
+            padding: 40px;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.2em;
+            border-radius: 30px;
+            border: 1px solid #d1d9e6;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            outline: none;
+        }
+        .weather-card {
+            display: flex;
+            background: linear-gradient(135deg, #4a90e2 0%, #50e3c2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .main-info {
+            flex-grow: 1;
+            text-align: center;
+        }
+        .main-info .icon {
+            width: 120px;
+            height: 120px;
+        }
+        .main-info .temperature {
+            font-size: 100px;
+            font-weight: 300;
+            line-height: 1;
+        }
+        .details {
+            width: 250px;
+            padding-left: 40px;
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .details .city {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .details .description {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .extra-details {
+            display: flex;
+            justify-content: space-between;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 20px;
+        }
+        .detail-item {
+            text-align: center;
+            width: 48%;
+        }
+        .detail-item .value {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .error {
+            text-align: center;
+            color: #d9534f;
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <form action="/" method="POST">
+            <input type="text" name="city_name" class="search-bar" placeholder="ค้นหาชื่อเมือง...">
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if weather %}
+            <div class="weather-card">
+                <div class="main-info">
+                    <img src="http://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="weather icon" class="icon">
+                    <div class="temperature">{{ weather.temperature }}°</div>
+                </div>
+                <div class="details">
+                    <div class="city">{{ weather.city }}</div>
+                    <div class="description">{{ weather.description }}</div>
+                    <div class="extra-details">
+                        <div class="detail-item">
+                            <span>ความเร็วลม</span>
+                            <div class="value">{{ weather.wind_speed }} m/s</div>
+                        </div>
+                        <div class="detail-item">
+                            <span>ความชื้น</span>
+                            <div class="value">{{ weather.humidity }}%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
